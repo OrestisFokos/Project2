@@ -18,6 +18,12 @@ vector<vector<new_type>> read_input_to_vector( string filename){
 
 		ifstream file;
 		file.open(filename.c_str());
+		if ( file.fail() ){
+			cout << "Couldn't open the file!" << endl;
+			cerr << "Error: " << strerror(errno);
+			exit(-1);
+		}
+
 		int i;
 		int npoints = 0;
 		string line;
@@ -26,8 +32,9 @@ vector<vector<new_type>> read_input_to_vector( string filename){
 		while (file.peek() != EOF){
 			getline(file,line);	//diavazoume to arxeio grammi grammi
 			npoints++;
+			cout<<"read line "<<npoints<<endl;
 			output.clear();
-			int word;
+			new_type word;
 			stringstream s(line);	//xwrizei to string gia epeksergasia meta
 				while(s>>word){
 				output.push_back(word);	//gemizw to vector me ena dimension th fora

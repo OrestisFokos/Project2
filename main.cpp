@@ -59,11 +59,12 @@ int main(int argc, char *argv[]){
     cin>>input_file;
   }
   All = read_input_to_vector(input_file);
+  cout<<"read whole input file"<<endl;
   //calculate avg_nn_distance for all points in dataset, if you wish to skip this step comment below lines
   vector<dist_id> brute_nn_points;
   double avg_nn_distance;
-  brute_nn_points = brute_min_distance_all(All,avg_nn_distance,distance_type);
-
+  //brute_nn_points = brute_min_distance_all(All,avg_nn_distance,distance_type);
+  cout<<"before s init"<<endl;
 
   S_init();
 
@@ -176,6 +177,7 @@ int main(int argc, char *argv[]){
   int K = 4;
   vector <vector<new_type> *> * random_K;
   random_K = random_initialization(&All, K);
+  cout<<"teleiwse to random_initialization"<<endl;
   //twra sto random_K exoume ena ptr se vector me centroids,
   //diladi ena vector <vector <new_type> * > *
   /*
