@@ -52,14 +52,19 @@ int main(int argc, char *argv[]){
   string distance_type;
   distance_type = "manhattan";
   // READING INPUT
+  InputPoints *input;
+
   vector<vector<new_type>> All;
 
   if (input_file.empty()){
     cout<< "Please enter input_file path"<<endl;
     cin>>input_file;
   }
-  All = read_input_to_vector(input_file);
+  input = read_input_points(input_file);
   cout<<"read whole input file"<<endl;
+  All = input->dimensions;
+  cout<<input->dimensions.at(2).at(2)<<endl;
+
   //calculate avg_nn_distance for all points in dataset, if you wish to skip this step comment below lines
   vector<dist_id> brute_nn_points;
   double avg_nn_distance;
@@ -82,6 +87,7 @@ int main(int argc, char *argv[]){
 
 
   //READING QUERIES
+  /*
   if (query_file.empty()){
     cout<< "Please enter query_file path"<<endl;
     cin>>query_file;
@@ -99,6 +105,10 @@ int main(int argc, char *argv[]){
   clock_t begin;
   clock_t end;
   double elapsed_secs;
+
+  */
+
+
   /*//BRUTE NEAREST NEIGHBOR FOR QUERIES
 
   for (int i=0;i<queries.size();i++){
