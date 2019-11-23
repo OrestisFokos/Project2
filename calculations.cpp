@@ -55,6 +55,11 @@ double min_C(vector<new_type> p, vector<new_type > q, int x, int y){ // dtw
            }
        }
     }
+
+    for (int i = 0; i < x; i++){// delete C
+           delete[] C[x];
+    }
+    delete[] C;
 }
 
 long long modularPow(long long m,int d, long long M) // m^(d-1) = m^(d-1)/2 * m(d-1)/2
