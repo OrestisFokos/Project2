@@ -171,9 +171,29 @@ int main(int argc, char *argv[]){
   cout<<"Time for range search: "<<elapsed_secs<<endl;
 */
 
+  vector<vector<double> * > * vvv;
+  vector <double > *D;
+  vector<double> dd;
+  dd.push_back(3.4);
+  dd.push_back(6.854);
+  cout<<"dd is done"<<endl;
+  D = &dd;
+  cout<<"D is done"<<endl;
+  vvv->push_back(D);
+  cout<<"vvv is done"<<endl;
+
+  cout<<"D "<<D->at(0)<<endl;
+  cout<<"D "<<D->at(1)<<endl;
+  cout<<"VVV " << vvv->at(0)->at(0)<<endl;
+
+  //(*vvv).push_back(  );
 
 
 
+
+
+
+  All.erase (All.begin());
   int K = 4;
   vector <vector<new_type> *> * random_K;
   random_K = random_initialization(&All, K);
