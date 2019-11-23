@@ -32,7 +32,7 @@ vector<vector<new_type>> read_input_to_vector( string filename){
 		while (file.peek() != EOF){
 			getline(file,line);	//diavazoume to arxeio grammi grammi
 			npoints++;
-			cout<<"read line "<<npoints<<endl;
+			//cout<<"read line "<<npoints<<endl;
 			output.clear();
 			new_type word;
 			stringstream s(line);	//xwrizei to string gia epeksergasia meta

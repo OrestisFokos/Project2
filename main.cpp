@@ -73,6 +73,17 @@ int main(int argc, char *argv[]){
   hashTables = create_hashTables(&All);
   vector <dist_id> ann_complete_results;
 
+  vector<vector<new_type>> curves_1;
+  vector<vector<new_type>> curves_2;
+  for (int i = 0; i<20; i++){
+      curves_1.push_back(All[i]);
+  }
+  for (int i = 20; i<40; i++){
+      curves_2.push_back(All[i]);
+  }
+
+  cout<<"dynamic distance: "<<min_C(curves_1,curves_2,20,20)<<endl;
+
   // Hypercube H(pow(2,d_hC));
   // for (int i = 0; i< All.size(); i++){
   //     int *f_temp= fArray(&hashTables,All[i],s,d_hC);
@@ -174,10 +185,10 @@ int main(int argc, char *argv[]){
 
 
 
-  int K = 4;
+  /*int K = 4;
   vector <vector<new_type> *> * random_K;
   random_K = random_initialization(&All, K);
-  cout<<"teleiwse to random_initialization"<<endl;
+  cout<<"teleiwse to random_initialization"<<endl;*/
   //twra sto random_K exoume ena ptr se vector me centroids,
   //diladi ena vector <vector <new_type> * > *
   /*
@@ -193,7 +204,7 @@ int main(int argc, char *argv[]){
 */
 
 
-  delete random_K;
+  //delete random_K;
 
 
   S_delete();

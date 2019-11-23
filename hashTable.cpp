@@ -16,7 +16,6 @@ extern long long m,M;
 
 vector<double> **s; // size:Lkd*double_size, revaluate g
 
-
 void S_init(){
     s = new vector<double>*[500];
     for(int i = 0; i < 500; i++){

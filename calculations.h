@@ -14,6 +14,7 @@ vector<double> randomVector(); //uniformly distributed vector in [0,w),w>>r
 
 double randomNumber(double x,double y); // uniform distribution
 double distance(vector<new_type>, vector<new_type>, string distance_type);
+double min_C(vector<vector<new_type>> p, vector<vector<new_type>> q, int x, int y); // dynamic
 
 long long modularSum(int a,int b);//if needed,prob not
 long long modularPow(int m,int d, int M);
