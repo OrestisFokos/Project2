@@ -19,6 +19,44 @@ long long m = 2^32 - 5;
 long long M = 2^32/k;
 
 
+double min_C(vector<new_type> p, vector<new_type > q, int x, int y){ // dtw
+    double **C = new double*[x]; // define C
+    for (int i = 0; i < x; i++){
+        C[i] = new double[y];
+    }
+
+    if (p.size() < q.size()){ // make both curves m-dimension
+        for (int i = 0; i < q.size() - p.size(); i++){
+            p.push_back(0.0);
+        }
+    }
+    else{
+        for (int i = 0; i < p.size() - q.size(); i++){
+            q.push_back(0.0);
+        }
+    }
+
+    for (int i = 0; i < x; i++){ // bottom-up
+       for (int j = 0; j < y; j++){
+           if (i == j && i == 0){
+                C[0][0] = distance(p,q,"euclidean");
+           }
+           else if( j > 0 && i == 0 ){
+               C[0][j] = C[0][j-1] + distance(p,q,"euclidean");
+           }
+           else if( i > 0  && j == 0){
+               C[i][0] = C[i][0] + distance(p,q,"euclidean");
+           }
+           else{
+               double min = C[i-1][j];
+               if (min > C[i-1][j-1]) min = C[i-1][j-1];
+               if (min > C[i][j-1]) min = C[i][j-1];
+               C[i][j] = min + distance(p,q,"euclidean") ;
+           }
+       }
+    }
+}
+
 long long modularPow(long long m,int d, long long M) // m^(d-1) = m^(d-1)/2 * m(d-1)/2
 {
     long long res = 1;      // Initialize result
