@@ -16,6 +16,8 @@
 //PROSFATA
 #include "range_search.h"
 #include "random_initialization.h"
+#include "assignment.h"
+
 using namespace std;
 
 extern int tableSize;
@@ -107,11 +109,14 @@ int main(int argc, char *argv[]){
 
   All.erase (All.begin());  //den kserw an xreiazetai, to kanw gia na vgalw tin grammi pou leei "vectors"
   int K = 4;
+  // to random K prepei na einai pointers se NEA simeia
   vector <vector<new_type> *> * random_K;
   random_K = random_initialization(&All, K);
   cout<<"teleiwse to random_initialization"<<endl;
 
-  cout<< "RANDOM K "<<random_K->at(0)->at(1)<<endl;
+    cout<< "RANDOM K "<<random_K->at(0)->at(0)<<endl;
+      cout<< "RANDOM K "<<random_K->at(0)->at(1)<<endl;
+        cout<< "RANDOM K "<<random_K->at(K-1)->at(K-1)<<endl;
   //twra sto random_K exoume ena ptr se vector me centroids,
   //diladi ena vector <vector <new_type> * > *
   /*
@@ -125,7 +130,13 @@ int main(int argc, char *argv[]){
   }
 
 */
+  vector<vector<new_type>> test;
+  test.push_back(All.at(0));
+  test.push_back(All.at(1));
+  test.push_back(All.at(2));
+  test.push_back(All.at(3));
 
+  lloyds_assignment(&All,&test);
 
   delete random_K;
   delete input;

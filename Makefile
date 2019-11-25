@@ -1,11 +1,8 @@
-CC = g++ -std=c++11 -g 
+CC = g++ -std=c++11 -g
 
-default:lsh cube
-lsh: file.o brute_force.o calculations.o ann.o range_search.o hashTable.o hypercube.o random_initialization.o main.o
-	$(CC) -o lsh file.o brute_force.o calculations.o hashTable.o hypercube.o ann.o range_search.o random_initialization.o main.o
-
-cube: file.o brute_force.o calculations.o ann.o range_search.o hashTable.o hypercube.o random_initialization.o main.o
-	$(CC) -o cube file.o brute_force.o calculations.o hashTable.o hypercube.o ann.o range_search.o random_initialization.o main.o
+default:lsh
+lsh: file.o brute_force.o calculations.o ann.o range_search.o hashTable.o hypercube.o random_initialization.o assignment.o main.o
+	$(CC) -o lsh file.o brute_force.o calculations.o hashTable.o hypercube.o ann.o range_search.o random_initialization.o assignment.o main.o
 
 file.o: file.cpp file.h brute_force.h hashTable.h calculations.h
 	$(CC) -c file.cpp
@@ -27,6 +24,9 @@ hashTable.o: hashTable.cpp hashTable.h calculations.h
 
 random_initialization.o: random_initialization.cpp random_initialization.h file.h
 	$(CC) -c random_initialization.cpp
+
+assignment.o: assignment.cpp assignment.h calculations.h
+	$(CC) -c assignment.cpp
 
 hypercube.o: hypercube.cpp hypercube.h
 	$(CC) -c hypercube.cpp
