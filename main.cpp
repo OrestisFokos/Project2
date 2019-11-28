@@ -54,22 +54,38 @@ int main(int argc, char *argv[]){
   string distance_type;
   distance_type = "manhattan";
   // READING INPUT
-  InputPoints *input;
-
-  vector<vector<new_type>> All;
 
   if (input_file.empty()){
     cout<< "Please enter input_file path"<<endl;
     cin>>input_file;
   }
-  input = read_input_points(input_file);
-  cout<<"read whole input file"<<endl;
-  All = input->dimensions;
-
 
   clock_t begin;
   clock_t end;
   double elapsed_secs;
+
+
+  //reading points
+  begin = clock();
+  InputPoints *input;
+  vector<vector<new_type>> All;
+  input = read_input_points(input_file);
+  All = input->dimensions;
+  end = clock();
+  elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+  cout<<"Time for reading point input : "<<elapsed_secs<<endl;
+
+  //reading curves
+  begin = clock();
+  InputCurves * input_curves;
+  input_curves = read_input_curves("dataset-curves/trajectories_dataset_small.csv");
+  end = clock();
+  elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+  cout<<"Time for reading curve input : "<<elapsed_secs<<endl;
+
+
+
+  cout<<"read whole input file"<<endl;
 
   S_init();
 
@@ -140,7 +156,7 @@ int main(int argc, char *argv[]){
 
   delete random_K;
   delete input;
-
+  delete input_curves;
   S_delete();
   delete[] hashTables;
 
