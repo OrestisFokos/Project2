@@ -78,7 +78,7 @@ int main(int argc, char *argv[]){
       curves_2.push_back(All[i]);
   }
 
-  cout<<"dynamic distance: "<<min_C(curves_1,curves_2,20,20)<<endl;
+  cout<<"dynamic distance: "<<min_C(curves_1,curves_2,20,20)<<endl; 
 
   // Hypercube H(pow(2,d_hC));
   // for (int i = 0; i< All.size(); i++){

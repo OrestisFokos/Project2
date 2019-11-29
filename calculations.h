@@ -26,6 +26,7 @@ int g_concat(vector<new_type> p, vector<double> *s); //revaluate g for query
 int binarytoDec(int *arrbin);
 int decToBinaryConcat(vector<new_type> h_f);
 
+double delta_calc(vector< vector<vector<new_type>> > P);
 vector<vector<new_type>> grid_points(vector<vector<new_type>> p,vector<double> t);//create grid_curve
 vector<new_type> vector_padding(vector<vector<new_type>> p);
 

@@ -215,6 +215,21 @@ vector<new_type> vector_padding(vector<vector<new_type>> p){
    return v;
 }
 
+double delta_calc(vector< vector<vector<new_type>> > P){
+  double dist,dist2;
+  dist2 = 0;
+
+  for(int i = 0; i < P.size(); i++){
+    dist = 0;
+    for(int j = 0; j < P[i].size() - 1; j++){
+      dist += distance(P[i][j],P[i][j+1],"euclidean");
+    }
+    dist = dist / (P[i].size() - 1);
+    dist2 += dist;
+  }
+  return dist2 = dist2 / (P.size());
+}
+
 vector<vector<new_type>> grid_points(vector<vector<new_type>> p,vector<double> t){ //create grid_curve,t is randomVector()
     //find a_i
     vector<vector<new_type>> grid_curve;
