@@ -9,7 +9,7 @@
 using namespace std;
 
 extern int k,d,tableSize,L;
-extern double w;
+extern double w,delta;
 extern long long m,M;
 //struct point,add pointer to bucket
 
@@ -138,8 +138,6 @@ int Hash::hashFunction(vector<new_type > p, vector<double> *s) {  // g
     }
     return decToBinaryConcat(h) % tableSize;
 }
-
-
 
 
 Bucket *  Hash::getBucket(int index) {

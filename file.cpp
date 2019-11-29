@@ -14,7 +14,7 @@ using namespace std;
 
 extern int tableSize;
 
-vector<vector<new_type>> read_input_to_vector( string filename){
+InputPoints * read_input_points( string filename){
 
 		ifstream file;
 		file.open(filename.c_str());
@@ -27,19 +27,25 @@ vector<vector<new_type>> read_input_to_vector( string filename){
 		int i;
 		int npoints = 0;
 		string line;
-		vector<vector<new_type>> All;
+		vector<string> ids;
 		vector<new_type> output;
+		InputPoints * Points = new InputPoints;
+		// diavazoume prwta tin prwti grammh tin opoia petame
+		getline(file,line);	//diavazoume to arxeio grammi grammi
 		while (file.peek() != EOF){
 			getline(file,line);	//diavazoume to arxeio grammi grammi
 			npoints++;
-			//cout<<"read line "<<npoints<<endl;
+
 			output.clear();
+			string id;
 			new_type word;
 			stringstream s(line);	//xwrizei to string gia epeksergasia meta
-				while(s>>word){
-				output.push_back(word);	//gemizw to vector me ena dimension th fora
-			}
-			All.push_back(output);
+			s>>id;
+			Points->ids.push_back(id);
+			while(s>>word){
+			output.push_back(word);	//gemizw to vector me ena dimension th fora
+		}
+			Points->dimensions.push_back(output);
 			// an theloume na stamatisoume to diavasma prin to telos tou arxeiou
 		 if  (npoints == 100)
 				break;
@@ -48,6 +54,5 @@ vector<vector<new_type>> read_input_to_vector( string filename){
 		}
 
 		file.close();
-
-		return All;
+		return Points;
 }
