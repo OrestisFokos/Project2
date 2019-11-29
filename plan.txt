@@ -1,0 +1,12 @@
+// 1.  Initialization
+  1.1 Random Selection of K points / K curves (simplest)
+  1.2 Kmeans ++
+
+// 2. Assignment
+  2.1 Lloyd's Assignment (simplest approach - slide 10)
+  2.2 Assignment by Range Search with LSH for vectors/curves (inverse assignment - slide 44)
+
+// 3. Update
+  3.1 PAM a la Lloyd's  (ta centroid einai simeia)
+  3.2 Ypologiste to Mean Vector (slide 34)/ Ypologiste to DTW Centroid Curver
+      (ta centroid den einai aparaitita simeia)
