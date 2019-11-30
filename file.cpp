@@ -10,6 +10,11 @@
 #include "brute_force.h"
 #include "hashTable.h"
 #include "calculations.h"	//gia na exw to extern int tableSize
+
+using point = std::vector<double>;
+using curve    = std::vector <point>;
+using vec_curve = std::vector<curve>;
+
 using namespace std;
 
 extern int tableSize;
@@ -92,6 +97,7 @@ InputCurves * read_input_curves(string filename){
 //		output = s;
 			cout<<"printing what is saved in s: " << s.str() <<endl;
 	//	output.push_back(word);	//gemizw to vector me ena dimension th fora
+		cout<<word<<endl;
 }
 
 	// //debug print
@@ -104,14 +110,73 @@ InputCurves * read_input_curves(string filename){
 
 		// an theloume na stamatisoume to diavasma prin to telos tou arxeiou
 	 if  (ncurves == 2)
+	 file.close();
 			break;
-
-
 	}
-
 	file.close();
+
 	return Curves;
 
+}
 
 
+// function to split string of comma separated points to vector
+vector<double>  spl(string str){
+
+    vector <double> vec;
+    // Returns first token
+    char ch[str.size()+1];
+    strcpy(ch, str.c_str() );
+    char *token = strtok(ch, ",");
+    // Keep printing tokens while one of the
+    // delimiters present in str[].
+    while (token != NULL)
+    {
+        double d = stod(token);
+        vec.push_back(d);
+        token = strtok(NULL, ",");
+    }
+    return vec;
+}
+
+
+
+
+
+// under construction
+vec_curve read_input_curves2(string filename){
+ 	ifstream file;
+	file.open(filename.c_str());
+	if ( file.fail() ){
+		cout << "Couldn't open the file!" << endl;
+		cerr << "Error: " << strerror(errno);
+		exit(-1);
+	}
+
+   string line;
+   vec_curve M;
+	 getline(file,line);
+	 //petame tin prwti grammi pou leei curves
+
+   while ( getline( file, line ) )                   // read a whole line of the file
+   {
+      stringstream ss( line );                     // put it in a stringstream (internal stream)
+      curve row;
+      string data;
+      point p;
+      getline( ss, data, '\t' );
+      getline( ss, data, '\t' );
+      //petame ta 2 prwta noumera
+      while ( getline( ss, data, '\t' ) )           // read (string) items up to a comma
+      {
+        data.erase(remove(data.begin(), data.end(), '('), data.end());
+        data.erase(remove(data.begin(), data.end(), ')'), data.end());
+        p = spl(data);
+        // thelw na spasw to data pou exei double xwrismenous me kommata
+        row.push_back( p);            // use stod() to convert to double; put in row vector
+      }
+      if ( row.size() > 0 ) M.push_back( row );    // add non-empty rows to matrix
+
+   }
+   return M;
 }

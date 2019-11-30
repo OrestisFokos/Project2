@@ -82,7 +82,7 @@ int main(int argc, char *argv[]){
   end = clock();
   elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
   cout<<"Time for reading curve input : "<<elapsed_secs<<endl;
-
+  cout<<"input curve id"<<input_curves->ids.at(0) <<endl;
 
 
   cout<<"read whole input file"<<endl;
@@ -161,6 +161,8 @@ int main(int argc, char *argv[]){
   delete[] hashTables;
 
 
+  vec_curve AllCurves;
+  AllCurves = read_input_curves2("dataset-curves/trajectories_dataset_small.csv");
 
   return 0;
 
