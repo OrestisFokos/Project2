@@ -13,6 +13,7 @@ double w = 4; // global w
 int d = 20;
 int k = 4;
 int L = 5;
+int max_points = 0;
 double delta = 0.00001;
 extern int n;
 int tableSize = n/8;
@@ -197,7 +198,7 @@ int decToBinaryConcat(vector<new_type> h_f){
 }
 
 vector<new_type> vector_padding(vector<vector<new_type>> p){
-   int max_points = 200; // in trajectories dataset second character
+   //int max_points = 200; // in trajectories dataset second character
    new_type max = p[0][0];
 
    vector<new_type> v;

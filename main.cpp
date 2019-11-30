@@ -36,14 +36,14 @@ int main(int argc, char *argv[]){
   for (int i=1;i<argc-1;i++){
     if (string(argv[0]) == "lsh") {
         if (string(argv[i]) == "-d") input_file = string(argv[i + 1]);
-        // if (string(argv[i]) == "-q") query_file = string(argv[i + 1]);
+         if (string(argv[i]) == "-q") query_file = string(argv[i + 1]);
         // if (string(argv[i]) == "-k") k = atoi(argv[i + 1]);
         // if (string(argv[i]) == "-L") L = atoi(argv[i + 1]);
         if (string(argv[i]) == "-o") output_file = string(argv[i + 1]);
     }
     else{
         if (string(argv[i]) == "-d") input_file = string(argv[i + 1]);
-        // if (string(argv[i]) == "-q") query_file = string(argv[i + 1]);
+        if (string(argv[i]) == "-q") query_file = string(argv[i + 1]);
         // if (string(argv[i]) == "-k") k = atoi(argv[i + 1]);
         // if (string(argv[i]) == "-M") MM = atoi(argv[i + 1]);
         // if (string(argv[i]) == "-probes") probes = atoi(argv[i + 1]);
@@ -59,26 +59,15 @@ int main(int argc, char *argv[]){
     cout<< "Please enter input_file path"<<endl;
     cin>>input_file;
   }
-  input = read_input_points(input_file);
+  /*input = read_input_points(input_file);
   cout<<"read whole input file"<<endl;
   //calculate avg_nn_distance for all points in dataset, if you wish to skip this step comment below lines
   vector<dist_id> brute_nn_points;
   double avg_nn_distance;
   //brute_nn_points = brute_min_distance_all(All,avg_nn_distance,distance_type);
-  cout<<"before s init"<<endl;
+  cout<<"before s init"<<endl;*/
 
   S_init();
-
-  vector<vector<new_type>> curves_1;
-  vector<vector<new_type>> curves_2;
-  for (int i = 0; i<20; i++){
-      curves_1.push_back(All[i]);
-  }
-  for (int i = 20; i<40; i++){
-      curves_2.push_back(All[i]);
-  }
-
-  cout<<"dynamic distance: "<<min_C(curves_1,curves_2,20,20)<<endl; 
 
   // Hypercube H(pow(2,d_hC));
   // for (int i = 0; i< All.size(); i++){
@@ -86,8 +75,6 @@ int main(int argc, char *argv[]){
   //     H.insertItem(&(All[i]),f_to_int(f_temp,d_hC));
   //     delete[] f_temp;
   // }
-
-  All = input->dimensions;
 
 
 
@@ -105,18 +92,6 @@ int main(int argc, char *argv[]){
   end = clock();
   elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
   cout<<"Time for reading point input : "<<elapsed_secs<<endl;
-
-  //reading curves
-  begin = clock();
-  InputCurves * input_curves;
-  input_curves = read_input_curves("dataset-curves/trajectories_dataset_small.csv");
-  end = clock();
-  elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
-  cout<<"Time for reading curve input : "<<elapsed_secs<<endl;
-  cout<<"input curve id"<<input_curves->ids.at(0) <<endl;
-
-
-  cout<<"read whole input file"<<endl;
 
   S_init();
 
@@ -190,7 +165,6 @@ int main(int argc, char *argv[]){
 
   delete random_K;
   delete input;
-  delete input_curves;
   S_delete();
   delete[] hashTables;
 

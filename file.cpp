@@ -18,6 +18,7 @@ using vec_curve = std::vector<curve>;
 using namespace std;
 
 extern int tableSize;
+extern int max_points;
 
 InputPoints * read_input_points( string filename){
 
@@ -32,6 +33,7 @@ InputPoints * read_input_points( string filename){
 		int i;
 		int npoints = 0;
 		string line;
+		string max_points_str;
 		vector<string> ids;
 		vector<new_type> output;
 		InputPoints * Points = new InputPoints;
@@ -47,6 +49,8 @@ InputPoints * read_input_points( string filename){
 			stringstream s(line);	//xwrizei to string gia epeksergasia meta
 			s>>id;
 			Points->ids.push_back(id);
+			s>>max_points_str;
+			max_points = stoi(max_points_str);
 			while(s>>word){
 			output.push_back(word);	//gemizw to vector me ena dimension th fora
 		}
@@ -167,6 +171,8 @@ vec_curve read_input_curves2(string filename){
       point p;
       getline( ss, data, '\t' );
       getline( ss, data, '\t' );
+			int second_num = stoi(data);
+			if (second_num > max_points) max_points = second_num;
       //petame ta 2 prwta noumera
       while ( getline( ss, data, '\t' ) )           // read (string) items up to a comma
       {
