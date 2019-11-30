@@ -13,6 +13,7 @@ double w = 4; // global w
 int d = 20;
 int k = 4;
 int L = 5;
+double delta = 0.00001;
 extern int n;
 int tableSize = n/8;
 long long m = 2^32 - 5;
@@ -91,7 +92,7 @@ vector<double> randomVector(){
     // construct a trivial random generator engine from a time-based seed:
     unsigned seed = chrono::system_clock::now().time_since_epoch().count();
     default_random_engine generator (seed);
-    uniform_real_distribution<double> distribution(0.0, w);
+    uniform_real_distribution<double> distribution(0.0, delta);
 
     int d = 10; // dimension
     vector<double> s;
@@ -193,4 +194,62 @@ int decToBinaryConcat(vector<new_type> h_f){
     }
     for (int j = i; j<32; j++){ binaryNum[j] = 0; }
     return binarytoDec(binaryNum);
+}
+
+vector<new_type> vector_padding(vector<vector<new_type>> p){
+   int max_points = 200; // in trajectories dataset second character
+   new_type max = p[0][0];
+
+   vector<new_type> v;
+   for (int i = 0; i < p.size(); i++){ // find max
+     for(int j = 0; j < p[i].size(); j++){
+        if (max < p[i][j]) p[i][j] = max + 0.5;
+     }
+   }
+
+   for (int i = p.size(); i < max_points; i++){ // create vector v to hash
+     for(int j = 0; j < p[i].size(); j++){
+        v.push_back(p[i][j]);
+     }
+   }
+   return v;
+}
+
+double delta_calc(vector< vector<vector<new_type>> > P){
+  double dist,dist2;
+  dist2 = 0;
+
+  for(int i = 0; i < P.size(); i++){
+    dist = 0;
+    for(int j = 0; j < P[i].size() - 1; j++){
+      dist += distance(P[i][j],P[i][j+1],"euclidean");
+    }
+    dist = dist / (P[i].size() - 1);
+    dist2 += dist;
+  }
+  return dist2 = dist2 / (P.size());
+}
+
+vector<vector<new_type>> grid_points(vector<vector<new_type>> p,vector<double> t){ //create grid_curve,t is randomVector()
+    //find a_i
+    vector<vector<new_type>> grid_curve;
+    vector<new_type> a;
+
+    for (int i = 0; i < p.size(); i++){
+        int dup = 0;
+        for(int j = 0; j<p[i].size(); j++){
+            a.push_back((delta * round(t[i]-p[i][j]))); // create a_0*δ...a_j*δ using manhattan ( round(t-p) )
+        }
+
+        //cant have duplicates
+        for (int x = 0; x < grid_curve.size(); x++){
+            if (grid_curve[x] == a) { dup = 1; break; }
+        }
+        if (dup == 0) grid_curve.push_back(a); // add grid's point to create grid_curve,concat
+
+        a.clear();
+        a.shrink_to_fit();
+    }
+    //padding
+    return grid_curve;
 }

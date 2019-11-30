@@ -50,4 +50,5 @@ public:
 
 Hash* create_hashTables(vector<vector<new_type>>* all);
 
+
 #endif //LSH_HASHTABLh_

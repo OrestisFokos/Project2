@@ -59,6 +59,37 @@ int main(int argc, char *argv[]){
     cout<< "Please enter input_file path"<<endl;
     cin>>input_file;
   }
+  input = read_input_points(input_file);
+  cout<<"read whole input file"<<endl;
+  //calculate avg_nn_distance for all points in dataset, if you wish to skip this step comment below lines
+  vector<dist_id> brute_nn_points;
+  double avg_nn_distance;
+  //brute_nn_points = brute_min_distance_all(All,avg_nn_distance,distance_type);
+  cout<<"before s init"<<endl;
+
+  S_init();
+
+  vector<vector<new_type>> curves_1;
+  vector<vector<new_type>> curves_2;
+  for (int i = 0; i<20; i++){
+      curves_1.push_back(All[i]);
+  }
+  for (int i = 20; i<40; i++){
+      curves_2.push_back(All[i]);
+  }
+
+  cout<<"dynamic distance: "<<min_C(curves_1,curves_2,20,20)<<endl; 
+
+  // Hypercube H(pow(2,d_hC));
+  // for (int i = 0; i< All.size(); i++){
+  //     int *f_temp= fArray(&hashTables,All[i],s,d_hC);
+  //     H.insertItem(&(All[i]),f_to_int(f_temp,d_hC));
+  //     delete[] f_temp;
+  // }
+
+  All = input->dimensions;
+
+
 
   clock_t begin;
   clock_t end;
@@ -123,6 +154,7 @@ int main(int argc, char *argv[]){
 
 
 
+
   All.erase (All.begin());  //den kserw an xreiazetai, to kanw gia na vgalw tin grammi pou leei "vectors"
   int K = 4;
   // to random K prepei na einai pointers se NEA simeia
@@ -130,9 +162,8 @@ int main(int argc, char *argv[]){
   random_K = random_initialization(&All, K);
   cout<<"teleiwse to random_initialization"<<endl;
 
-    cout<< "RANDOM K "<<random_K->at(0)->at(0)<<endl;
-      cout<< "RANDOM K "<<random_K->at(0)->at(1)<<endl;
-        cout<< "RANDOM K "<<random_K->at(K-1)->at(K-1)<<endl;
+  cout<< "RANDOM K "<<random_K->at(0)->at(1)<<endl;
+
   //twra sto random_K exoume ena ptr se vector me centroids,
   //diladi ena vector <vector <new_type> * > *
   /*
@@ -153,6 +184,9 @@ int main(int argc, char *argv[]){
   test.push_back(All.at(3));
 
   lloyds_assignment(&All,&test);
+
+
+  //delete random_K;
 
   delete random_K;
   delete input;

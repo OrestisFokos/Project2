@@ -40,6 +40,7 @@ InputPoints * read_input_points( string filename){
 		while (file.peek() != EOF){
 			getline(file,line);	//diavazoume to arxeio grammi grammi
 			npoints++;
+
 			output.clear();
 			string id;
 			new_type word;

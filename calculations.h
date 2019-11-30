@@ -14,6 +14,7 @@ vector<double> randomVector(); //uniformly distributed vector in [0,w),w>>r
 
 double randomNumber(double x,double y); // uniform distribution
 double distance(vector<new_type>, vector<new_type>, string distance_type);
+double min_C(vector<vector<new_type>> p, vector<vector<new_type>> q, int x, int y); // dynamic
 
 long long modularSum(int a,int b);//if needed,prob not
 long long modularPow(int m,int d, int M);
@@ -25,5 +26,8 @@ int g_concat(vector<new_type> p, vector<double> *s); //revaluate g for query
 int binarytoDec(int *arrbin);
 int decToBinaryConcat(vector<new_type> h_f);
 
+double delta_calc(vector< vector<vector<new_type>> > P);
+vector<vector<new_type>> grid_points(vector<vector<new_type>> p,vector<double> t);//create grid_curve
+vector<new_type> vector_padding(vector<vector<new_type>> p);
 
 #endif //LSH_CALCULATIONS_H
