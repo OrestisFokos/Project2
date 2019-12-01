@@ -11,7 +11,7 @@ using vec_curve = std::vector<curve>;
 
 using namespace std;
 
-typedef float new_type;
+typedef double new_type;
 
 
 
@@ -27,7 +27,7 @@ typedef struct InputCurves{
   vector < vector <tuple <new_type,new_type> > > dimensions;
 }InputCurves;
 
-typedef float new_type;
+typedef double new_type;
 
 InputPoints * read_input_points(string filename);
 

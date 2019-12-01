@@ -2,7 +2,7 @@
 #define RANGE_SEARCH_H
 #include <stdlib.h>
 
-typedef float new_type;
+typedef double new_type;
 
 vector<dist_id> range_search (
   Hash * T,

@@ -1,7 +1,7 @@
 #ifndef BRUTE_FORCE_H
 #define BRUTE_FORCE_H
 
-typedef float new_type;
+typedef double new_type;
 
 typedef struct dist_id *D;
 

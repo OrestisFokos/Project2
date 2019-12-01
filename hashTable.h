@@ -5,7 +5,7 @@
 #include "file.h"
 using namespace std;
 
-typedef float new_type;
+typedef double new_type;
 
 typedef struct Bucket *bucket; //access from main through *bucket
 

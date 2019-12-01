@@ -30,6 +30,8 @@ extern int probes,L,MM;
 
 
 int main(int argc, char *argv[]){
+
+
   string input_file ;
   string query_file;
   string output_file;
@@ -168,9 +170,9 @@ int main(int argc, char *argv[]){
   S_delete();
   delete[] hashTables;
 
-
   vec_curve AllCurves;
-  AllCurves = read_input_curves2("dataset-curves/trajectories_dataset_small.csv");
+  AllCurves = read_input_curves("./curves_dataset/trajectories_dataset_small.csv");
+
 
   return 0;
 
