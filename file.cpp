@@ -92,7 +92,7 @@ vector<double>  spl(string str){
 
 
 
-vec_curve read_input_curves2(string filename){
+vec_curve read_input_curves(string filename){
  	ifstream file;
 	file.open(filename.c_str());
 	if ( file.fail() ){
