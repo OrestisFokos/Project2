@@ -31,8 +31,7 @@ typedef double new_type;
 
 InputPoints * read_input_points(string filename);
 
-InputCurves * read_input_curves(string filename);
-vec_curve read_input_curves2 (string filename);
+vec_curve read_input_curves (string filename);
 
 vector<double>  spl(string str);
 
