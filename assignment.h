@@ -2,7 +2,7 @@
 #ifndef ASSIGNMENT_H
 #define ASSIGNMENT_H
 
-typedef float new_type;
+typedef double new_type;
 //LLoyds - slide 10
 //range search , LSH (inverse assignment - slide 44)
 

@@ -92,7 +92,7 @@ vector<double>  spl(string str){
 
 
 
-vec_curve read_input_curves(string filename){
+InputCurves* read_input_curves(string filename){
  	ifstream file;
 	file.open(filename.c_str());
 	if ( file.fail() ){
@@ -101,6 +101,7 @@ vec_curve read_input_curves(string filename){
 		exit(-1);
 	}
 
+		InputCurves * Curves = new InputCurves;
    string line;
    vec_curve M;
 	 getline(file,line);
@@ -112,8 +113,9 @@ vec_curve read_input_curves(string filename){
       curve row;
       string data;
       point p;
-      getline( ss, data, '\t' );
-      getline( ss, data, '\t' );
+      getline( ss, data, '\t' );	// prwto stoixeio einai to id
+			Curves->ids.push_back(data);
+      getline( ss, data, '\t' );	//deutero stoixeio o arithmos twn simeiwn. to xreiazomai kapou??
 			int second_num = stoi(data);
 			if (second_num > max_points) max_points = second_num;
       //petame ta 2 prwta noumera
@@ -128,5 +130,6 @@ vec_curve read_input_curves(string filename){
       if ( row.size() > 0 ) M.push_back( row );    // add non-empty rows to matrix
 
    }
-   return M;
+	 Curves->dimensions = M;
+   return Curves;
 }

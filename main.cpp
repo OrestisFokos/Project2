@@ -162,17 +162,19 @@ int main(int argc, char *argv[]){
 
   lloyds_assignment(&All,&test);
 
-
-  //delete random_K;
-
   delete random_K;
   delete input;
   S_delete();
   delete[] hashTables;
 
-  vec_curve AllCurves;
-  AllCurves = read_input_curves("./curves_dataset/trajectories_dataset_small.csv");
+  /* CURVE READ INPUT */
 
+  InputCurves* AllCurves;
+  AllCurves = read_input_curves("./curves_dataset/trajectories_dataset_small.csv");
+  cout<<"curves testing: id of first curve is = "<< AllCurves->ids.at(0) <<endl;
+  cout<<"curves testing: prwto dimension tou prwtou point tou prwtou curve =  "<<AllCurves->dimensions.at(0).at(0).at(0)<<endl;  //prwto dimension tou prwtou point tou prwtou curve
+
+  delete AllCurves;
 
   return 0;
 

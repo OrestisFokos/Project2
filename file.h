@@ -24,14 +24,14 @@ typedef struct InputPoints{
 //kathe curve einai vector apo tuples me x,y diastaseis k exei k ena curve id
 typedef struct InputCurves{
   vector <string> ids;
-  vector < vector <tuple <new_type,new_type> > > dimensions;
+  vec_curve dimensions;
 }InputCurves;
 
 typedef double new_type;
 
 InputPoints * read_input_points(string filename);
 
-vec_curve read_input_curves (string filename);
+InputCurves* read_input_curves (string filename);
 
 vector<double>  spl(string str);
 
