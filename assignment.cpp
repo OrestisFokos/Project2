@@ -27,7 +27,7 @@ void lloyds_assignment_point(point * p, vector<PointCluster> Clusters  ){
   }
   //debug print
   cout<< "this point belongs to cluster: "<<min_cluster<<endl;
-
+  return min_cluster;
 
 }
 
