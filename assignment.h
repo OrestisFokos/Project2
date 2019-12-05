@@ -7,9 +7,9 @@ typedef double new_type;
 //range search , LSH (inverse assignment - slide 44)
 
 void lloyds_assignment_point(point * p, vector<PointCluster> Clusters);
-void Update(vector<vector<new_type>> cluster, vector<new_type>* centroids);
+void Update(vector<point *> cluster, point* centroids);
 
-int findCluster(vector <vector<new_type>>* centroids, vector<new_type> x);
+int findCluster(vector<PointCluster> clusters, point x);
 //na ta kanw pointers??
 
 #endif //ASSIGNMENT_H
