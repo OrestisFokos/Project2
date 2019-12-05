@@ -6,7 +6,7 @@ typedef double new_type;
 //LLoyds - slide 10
 //range search , LSH (inverse assignment - slide 44)
 
-void lloyds_assignment_point(point * p, vector<PointCluster> Clusters);
+int lloyds_assignment_point(point * p, vector<PointCluster> Clusters);
 void Update(vector<point *> cluster, point* centroids);
 
 int findCluster(vector<PointCluster> clusters, point x);

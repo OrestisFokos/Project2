@@ -3,7 +3,10 @@
 #include "calculations.h"
 #include "assignment.h"
 
-void lloyds_assignment_point(point * p, vector<PointCluster> Clusters  ){
+/* kanw assign to point se ena apo ta clusters, h timh int pou
+epistrefei einai o arithmos tou cluster
+*/
+int lloyds_assignment_point(point * p, vector<PointCluster> Clusters  ){
 
   if (Clusters.size() == 0){
     cout<<"Got no clusters, can't assign anything."<<endl;
@@ -20,7 +23,7 @@ void lloyds_assignment_point(point * p, vector<PointCluster> Clusters  ){
   }
   //debug print
   cout<< "this point belongs to cluster: "<<min_cluster<<endl;
-
+  return min_cluster;
 
 }
 
