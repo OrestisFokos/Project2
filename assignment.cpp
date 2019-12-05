@@ -3,26 +3,27 @@
 #include "calculations.h"
 #include "assignment.h"
 
-//na kanw ta orismata pointers??
-void lloyds_assignment(  vector <vector<new_type> > *points, vector <vector<new_type> >* centroids){
+void lloyds_assignment_point(point * p, vector<PointCluster> Clusters  ){
 
-  int npoints = points->size();
-  int ncentroids = centroids->size();
-  if (ncentroids == 0 ){
-    cout<<"No centroids at all, can't use lloyds_assignment, exiting."<<endl;
-    exit;
+  if (Clusters.size() == 0){
+    cout<<"Got no clusters, can't assign anything."<<endl;
+    exit(-1);
   }
-  for (int i=0; i<npoints; i++){
-    double min_dist = distance( points->at(i),centroids->at(0),"manhattan" );
-    string id; // edw tha exw to id tou minimum distance, h ton arithmo tou cluster
-    for(int j=0; j<ncentroids;j++){
-      if ( distance( points->at(i),centroids->at(j),  "manhattan"  ) < min_dist ){
-        min_dist = distance( points->at(i),centroids->at(j) , "manhattan" );
-        //update min id also!!
-      }
+  int nclusters = Clusters.size();
+  double min_dist = distance( *p, Clusters.at(0).centroid, "manhattan" );
+  int min_cluster = 0;
+  for (int i=1;i<nclusters; i++){
+    if (distance( *p, Clusters.at(i).centroid, "manhattan" ) < min_dist){
+      min_dist = distance( *p, Clusters.at(i).centroid, "manhattan");
+      min_cluster = i;
     }
   }
+  //debug print
+  cout<< "this point belongs to cluster: "<<min_cluster<<endl;
+
+
 }
+
 
 void Update(vector<vector<new_type>> cluster, vector<new_type>* centroids){ // need *centroid so i can update inside function
     vector<new_type> new_centroid;

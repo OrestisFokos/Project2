@@ -25,7 +25,7 @@ hashTable.o: hashTable.cpp hashTable.h calculations.h
 random_initialization.o: random_initialization.cpp random_initialization.h file.h
 	$(CC) -c random_initialization.cpp
 
-assignment.o: assignment.cpp assignment.h calculations.h
+assignment.o: assignment.cpp assignment.h calculations.h file.h
 	$(CC) -c assignment.cpp
 
 hypercube.o: hypercube.cpp hypercube.h

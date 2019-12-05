@@ -160,8 +160,6 @@ int main(int argc, char *argv[]){
   test.push_back(All.at(2));
   test.push_back(All.at(3));
 
-  lloyds_assignment(&All,&test);
-
   delete random_K;
   delete input;
   S_delete();
@@ -174,7 +172,26 @@ int main(int argc, char *argv[]){
   cout<<"curves testing: id of first curve is = "<< AllCurves->ids.at(0) <<endl;
   cout<<"curves testing: prwto dimension tou prwtou point tou prwtou curve =  "<<AllCurves->dimensions.at(0).at(0).at(0)<<endl;  //prwto dimension tou prwtou point tou prwtou curve
 
+  PointCluster c;
+  point* new_point = new point;
+  new_point->push_back(1.0);
+  new_point->push_back(3.05);
+  new_point->push_back(1151.9);
+
+  c.centroid = * new_point ;
+  cout<<c.centroid.at(0)<<endl;
+  cout<<c.centroid.at(1)<<endl;
+  cout<<c.centroid.at(2)<<endl;
+
+  vector <PointCluster> vpc;
+  vpc.push_back(c);
+  lloyds_assignment_point(&(All.at(0)),vpc);
+
+  delete new_point;
   delete AllCurves;
+
+
+
 
   return 0;
 
