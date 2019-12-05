@@ -3,6 +3,13 @@
 #include "calculations.h"
 #include "assignment.h"
 
+void lloyds(point * p, vector<PointCluster>* Clusters){
+  lloyds_assignment_point(p, *Clusters);
+  for (int i = 0; i < Clusters->size(); i++) {
+    Update(Clusters->at(i).objects, &(Clusters->at(i).centroid));
+  }
+}
+
 void lloyds_assignment_point(point * p, vector<PointCluster> Clusters  ){
 
   if (Clusters.size() == 0){

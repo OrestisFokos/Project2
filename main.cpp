@@ -185,7 +185,9 @@ int main(int argc, char *argv[]){
 
   vector <PointCluster> vpc;
   vpc.push_back(c);
-  lloyds_assignment_point(&(All.at(0)),vpc);
+  lloyds(&(All.at(0)),&vpc);
+  //lloyds_assignment_point(&(All.at(0)),vpc);
+
 
   delete new_point;
   delete AllCurves;
