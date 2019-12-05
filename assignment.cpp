@@ -4,7 +4,7 @@
 #include "assignment.h"
 
 void lloyds(point * p, vector<PointCluster>* Clusters){
-  lloyds_assignment_point(p, *Clusters);
+  lloyds_assignment_point(p,Clusters);
   for (int i = 0; i < Clusters->size(); i++) {
     Update(Clusters->at(i).objects, &(Clusters->at(i).centroid));
   }
@@ -59,7 +59,7 @@ void Update(vector<point *> cluster, point* centroids){ // need *centroid so i c
 //find closest centroid so we know x's cluster
 int findCluster(vector<PointCluster> clusters, point x){
   int min_i = 0;
-  double min_dist =1000000.0;//a big number
+  double min_dist = distance(x,clusters[0].centroid,"manhattan");
   for (int i = 0; i < clusters.size(); i++){
     double dist = distance(x,clusters[i].centroid,"manhattan");
     if (min_dist < dist){
