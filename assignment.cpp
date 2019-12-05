@@ -10,24 +10,28 @@ void lloyds(point * p, vector<PointCluster>* Clusters){
   }
 }
 
-void lloyds_assignment_point(point * p, vector<PointCluster> Clusters  ){
 
-  if (Clusters.size() == 0){
+/* kanw assign to point se ena apo ta clusters, h timh int pou
+epistrefei einai o arithmos tou cluster
+*/
+void lloyds_assignment_point(point * p, vector<PointCluster> * Clusters ){
+
+  if (Clusters->size() == 0){
     cout<<"Got no clusters, can't assign anything."<<endl;
     exit(-1);
   }
-  int nclusters = Clusters.size();
-  double min_dist = distance( *p, Clusters.at(0).centroid, "manhattan" );
+  int nclusters = Clusters->size();
+  double min_dist = distance( *p, Clusters->at(0).centroid, "manhattan" );
   int min_cluster = 0;
   for (int i=1;i<nclusters; i++){
-    if (distance( *p, Clusters.at(i).centroid, "manhattan" ) < min_dist){
-      min_dist = distance( *p, Clusters.at(i).centroid, "manhattan");
+    if (distance( *p, Clusters->at(i).centroid, "manhattan" ) < min_dist){
+      min_dist = distance( *p, Clusters->at(i).centroid, "manhattan");
       min_cluster = i;
     }
   }
   //debug print
   cout<< "this point belongs to cluster: "<<min_cluster<<endl;
-  return min_cluster;
+  //return min_cluster;
 
 }
 
