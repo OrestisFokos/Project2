@@ -15,7 +15,7 @@
 #include "ann.h"
 //PROSFATA
 #include "range_search.h"
-#include "random_initialization.h"
+#include "initialization.h"
 #include "assignment.h"
 
 using namespace std;
@@ -133,37 +133,13 @@ int main(int argc, char *argv[]){
 
 
   All.erase (All.begin());  //den kserw an xreiazetai, to kanw gia na vgalw tin grammi pou leei "vectors"
-  int K = 4;
-  // to random K prepei na einai pointers se NEA simeia
-  vector <vector<new_type> *> * random_K;
-  random_K = random_initialization(&All, K);
-  cout<<"teleiwse to random_initialization"<<endl;
 
-  cout<< "RANDOM K "<<random_K->at(0)->at(1)<<endl;
-  cout<< "RANDOM K "<<random_K->at(1)->at(1)<<endl;
-  cout<< "RANDOM K "<<random_K->at(3)->at(1)<<endl;
-
-
-  //twra sto random_K exoume ena ptr se vector me centroids,
-  //diladi ena vector <vector <new_type> * > *
-  /*
-  //debug print
-  for(int i=0;i<K;i++){
-    cout<<"CLUSTER NUMBER "<< i <<" is : ";
-    for ( int j=0 ; j < random_K->at(i)->size(); j++ ) {
-      cout<<(random_K->at(i))->at(j)<<" ";
-    }
-    cout<<endl;
-  }
-
-*/
   vector<vector<new_type>> test;
   test.push_back(All.at(0));
   test.push_back(All.at(1));
   test.push_back(All.at(2));
   test.push_back(All.at(3));
 
-  delete random_K;
   delete input;
   S_delete();
   delete[] hashTables;
@@ -194,6 +170,7 @@ int main(int argc, char *argv[]){
   cout<<c3.centroid.at(1)<<endl;
   cout<<c3.centroid.at(2)<<endl;
 
+
   vector <PointCluster> vpc;
   vpc.push_back(c1);
   vpc.push_back(c2);
@@ -202,19 +179,34 @@ int main(int argc, char *argv[]){
     lloyds(&(All.at(i)),&vpc);
 
   }
+  cout<<"end of lloyds debug print" <<endl;
   /* end of lloyds test */
 
+/* creating K empty clusters and using random initialize to assing their centroids */
+
+int K = 4;
+// to random K prepei na einai pointers se NEA simeia
+vector <vector<new_type> *> * random_K_centroids;
+random_K = random_initialization_point(&All, K);
+//twra sto random_K exoume ena ptr se vector me centroids,
+//diladi ena vector <vector <new_type> * > *
+cout<< "RANDOM K "<<random_K_centroids->at(0)->at(1)<<endl;
+cout<< "RANDOM K "<<random_K_centroids->at(1)->at(1)<<endl;
+cout<< "RANDOM K "<<random_K_centroids->at(3)->at(1)<<endl;
+    vector<PointCluster> clusters =  create_clusters_point(K);
+    for (int i=0;i<K;i++){
+      clusters.at(i).centroid = *( random_K_centroids->at(i) );
+    }
+/* random centroids assigned correctly */
 
 
 
 
-  //lloyds_assignment_point(&(All.at(0)),vpc);
 
 
   delete AllCurves;
 
-
-
+  delete random_K_centroids;
 
   return 0;
 
