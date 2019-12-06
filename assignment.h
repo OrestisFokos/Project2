@@ -8,9 +8,9 @@ typedef double new_type;
 //range search , LSH (inverse assignment - slide 44)
 
 void lloyds(point * p, vector<PointCluster>* Clusters,Hashtable_points* hashTable);
-void lloyds_assignment_point(point * p, vector<PointCluster>* Clusters,Hashtable_points* hashTable);
+void lloyds_first_assignment_point(point * p, vector<PointCluster> * Clusters, Hashtable_points* hashTable);
+void lloyds_assignment_point(point * p, vector<PointCluster>* Clusters,Hashtable_points* hashTable,int * nchanges);
 void Update(vector<point *> cluster, point* centroids);
-
 int findCluster(vector<PointCluster> clusters, point x);
 //na ta kanw pointers??
 

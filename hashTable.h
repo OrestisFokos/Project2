@@ -78,6 +78,8 @@ public:
 
   int displayHashCluster(point p);
 
+  void update(point_node pn);
+
 
 };
 

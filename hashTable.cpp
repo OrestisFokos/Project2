@@ -166,6 +166,16 @@ void Hashtable_points::insertItem(point_node pn)
   table[index].push_back(pn);
 }
 
+// update the cluster that this point belongs to
+void Hashtable_points::update(point_node pn){
+  int index = hashFunction(pn.p);
+  for (int i=0;i<table[index].size();i++){
+    if (table[index].at(i).p == pn.p) {
+      table[index].at(i).cluster = pn.cluster;
+    }
+  }
+}
+
 // hash function to map values to key
 int Hashtable_points::hashFunction(point p) {
     int sum = 0;

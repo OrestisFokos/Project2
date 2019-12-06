@@ -1,20 +1,28 @@
 //assignment.cpp
 #include <iostream>
+#include <algorithm>
+#include "hashTable.h"
 #include "calculations.h"
 #include "assignment.h"
 
 void lloyds(point * p, vector<PointCluster>* Clusters,Hashtable_points* hashTable){
-  lloyds_assignment_point(p,Clusters,hashTable);
+  int * nchanges = new int;
+  nchanges = 0;
+  lloyds_first_assignment_point(p,Clusters,hashTable);
+  cout<< "ekana to lloyd first"<<endl;
   for (int i = 0; i < Clusters->size(); i++) {
     Update(Clusters->at(i).objects, &(Clusters->at(i).centroid));
+    cout<<"ekana update"<<endl;
   }
+
+  lloyds_assignment_point(p,Clusters,hashTable,nchanges);
 }
 
 
 /* kanw assign to point se ena apo ta clusters, h timh int pou
 epistrefei einai o arithmos tou cluster
 */
-void lloyds_assignment_point(point * p, vector<PointCluster> * Clusters, Hashtable_points* hashTable){
+void lloyds_first_assignment_point(point * p, vector<PointCluster> * Clusters, Hashtable_points* hashTable){
 
   if (Clusters->size() == 0){
     cout<<"Got no clusters, can't assign anything."<<endl;
@@ -41,6 +49,47 @@ void lloyds_assignment_point(point * p, vector<PointCluster> * Clusters, Hashtab
   //return min_cluster;
 
 }
+
+void lloyds_assignment_point(point * p, vector<PointCluster> * Clusters, Hashtable_points* hashTable, int *nchanges){
+  if (Clusters->size() == 0){
+    cout<<"Got no clusters, can't assign anything."<<endl;
+    exit(-1);
+  }
+
+  int nclusters = Clusters->size();
+  double min_dist = distance( *p, Clusters->at(0).centroid, "manhattan" );
+  int min_cluster = 0;
+  for (int i=1;i<nclusters; i++){
+    if (distance( *p, Clusters->at(i).centroid, "manhattan" ) < min_dist){
+      min_dist = distance( *p, Clusters->at(i).centroid, "manhattan");
+      min_cluster = i;
+    }
+  }
+
+  point_node pn;
+  pn.p = *p;
+  pn.cluster = min_cluster;
+
+  int previous_cluster;
+  previous_cluster = hashTable->displayHashCluster(*p);
+  if (min_cluster != previous_cluster){
+    (*nchanges) ++;
+    cout<<"kanw hashtable update"<<endl;
+    hashTable->update(pn);
+    // push point in new cluster list, remove from old cluster list
+    Clusters->at(min_cluster).objects.push_back(p);
+
+    //svinw apo to proigoumeno cluster to simeio auto me tin std::remove kai tin std::erase
+    Clusters->at(previous_cluster).objects.erase(remove(Clusters->at(previous_cluster).objects.begin(), Clusters->at(previous_cluster).objects.end(), p), Clusters->at(previous_cluster).objects.end());
+
+  }
+
+
+}
+
+
+
+
 
 
 void Update(vector<point *> cluster, point* centroids){ // need *centroid so i can update inside function

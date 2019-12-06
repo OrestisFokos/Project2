@@ -239,12 +239,6 @@ int main(int argc, char *argv[]){
 }
 
 
-
-
-
-
-  //delete hp;
-
   /* end of hashtable points debug */
 
 
