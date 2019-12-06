@@ -71,12 +71,7 @@ int main(int argc, char *argv[]){
 
   S_init();
 
-  // Hypercube H(pow(2,d_hC));
-  // for (int i = 0; i< All.size(); i++){
-  //     int *f_temp= fArray(&hashTables,All[i],s,d_hC);
-  //     H.insertItem(&(All[i]),f_to_int(f_temp,d_hC));
-  //     delete[] f_temp;
-  // }
+
 
 
 
@@ -86,34 +81,25 @@ int main(int argc, char *argv[]){
 
 
   //reading points
-  begin = clock();
   InputPoints *input;
   vector<vector<new_type>> All;
   input = read_input_points(input_file);
   All = input->dimensions;
-  end = clock();
-  elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
-  cout<<"Time for reading point input : "<<elapsed_secs<<endl;
-
-  S_init();
 
 
   Hash * hashTables;
   hashTables = create_hashTables(&All);
   vector <dist_id> ann_complete_results;
 
-  cout<<"created hashTables"<<endl;
 
 
 /*
-  begin = clock();
-
+// RANGE SEARCH, NOT USED, BUT CORRECT!
   int range = 4000;
   vector<dist_id> rr;
   cout<<"RANGE SEARCH"<<endl;
 
   for (int i=0; i <queries.size();i++){
-
 
     rr = range_search(hashTables,s[0],queries.at(i),range, distance_type);
 //    cout<<"number of points in range = "<< rr.size()<<endl;
@@ -124,9 +110,6 @@ int main(int argc, char *argv[]){
 
   vector<vector<dist_id>> rr_total;
   rr_total = range_search_complete(hashTables,s,&queries,range, distance_type);
-  end = clock();
-  elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
-  cout<<"Time for range search: "<<elapsed_secs<<endl;
 */
 
 
@@ -152,43 +135,6 @@ int main(int argc, char *argv[]){
   // cout<<"curves testing: prwto dimension tou prwtou point tou prwtou curve =  "<<AllCurves->dimensions.at(0).at(0).at(0)<<endl;  //prwto dimension tou prwtou point tou prwtou curve
   // delete AllCurves;
 
-  /* testing lloyds */
-
-  /* this prints only 0 0 0, why?
-  PointCluster c1;
-  c1.centroid = All.at(2) ;
-  cout<<c1.centroid.at(0)<<endl;
-  cout<<c1.centroid.at(1)<<endl;
-  cout<<c1.centroid.at(2)<<endl;
-
-  PointCluster c2;
-  c2.centroid = All.at(10) ;
-  cout<<c2.centroid.at(0)<<endl;
-  cout<<c2.centroid.at(1)<<endl;
-  cout<<c2.centroid.at(2)<<endl;
-
-  PointCluster c3;
-  c3.centroid = All.at(15) ;
-  cout<<c3.centroid.at(0)<<endl;
-  cout<<c3.centroid.at(1)<<endl;
-  cout<<c3.centroid.at(2)<<endl;
-
-
-  vector <PointCluster> vpc;
-  vpc.push_back(c1);
-  vpc.push_back(c2);
-  vpc.push_back(c3);
-  for (int i=0;i<40;i++){
-    lloyds(&(All.at(i)),&vpc);
-
-  }
-  cout<<"c1 has "<<c1.objects.size() << " objects"<<endl;
-  cout<<"c2 has "<<c2.objects.size() << " objects"<<endl;
-  cout<<"c3 has "<<c3.objects.size() << " objects"<<endl;
-  cout<<"end of lloyds debug print" <<endl;
-  */
-  /* end of lloyds test */
-
   /* creating K empty clusters and using random initialize to assing their centroids */
 
   int K = 4;
@@ -205,37 +151,31 @@ int main(int argc, char *argv[]){
   cout<<endl<<"We have "<<K<<" clusters. Now assigning points to clusters.."<<endl;
   /* as kanoume twra assign ola ta point se clusters*/
 
-  // int change = 1;
-  // while (change==1){
-  //   cout<<endl;
-  //   for (int i=0;i<All.size();i++){
-  //     lloyds(&(All.at(i)),&clusters);
-  //
-  //   }
-  // kanonika     for (int i=0;i<All.size();i++){
+  // ftiaxnoume hash table megalou megethous me prwto arithmo apo bucket
     Hashtable_points hp(739);
     for (int i=0;i<All.size();i++){
       lloyds(&(All.at(i)),&clusters,&hp);
     }
-    for(int i=0;i<K;i++){
-      cout<< "Cluster "<<i<<" has "<<clusters.at(i).objects.size()<<" points."<<endl;
-    }
-
-
 
 
   /* random centroids assigned correctly */
 
-  /* hashtable points debug */
 
-  // for (int i=0;i<All.size();i++){
-  //   point_node pn;
-  //   pn.p = All.at(i);
-  //   hp.insertItem(pn);
-  // }
-  for(int i=0;i<25;i++){
-  cout<< hp.displayHashCluster(All.at(i))<<endl;
 
+// test some points, to see their clusters
+cout<<"lets see some of the points' clusters"<<endl;
+  for(int i=0;i<30;i++){
+  cout<< hp.displayHashCluster(All.at(i))<<" ";
+}
+for(int i=140;i<160;i++){
+cout<< hp.displayHashCluster(All.at(i))<<" ";
+}
+for(int i=200 ;i<220;i++){
+cout<< hp.displayHashCluster(All.at(i))<<" ";
+}
+
+for(int i=0;i<K;i++){
+  cout<< "Cluster "<<i<<" has "<<clusters.at(i).objects.size()<<" points."<<endl;
 }
 
 

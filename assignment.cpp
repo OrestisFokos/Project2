@@ -9,7 +9,6 @@ void lloyds(point * p, vector<PointCluster>* Clusters,Hashtable_points* hashTabl
   int * nchanges = new int;
   nchanges = 0;
   lloyds_first_assignment_point(p,Clusters,hashTable);
-  cout<< "ekana to lloyd first"<<endl;
   do {
     for (int i = 0; i < Clusters->size(); i++) {
       Update(Clusters->at(i).objects, &(Clusters->at(i).centroid));
