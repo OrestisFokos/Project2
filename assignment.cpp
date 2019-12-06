@@ -10,12 +10,13 @@ void lloyds(point * p, vector<PointCluster>* Clusters,Hashtable_points* hashTabl
   nchanges = 0;
   lloyds_first_assignment_point(p,Clusters,hashTable);
   cout<< "ekana to lloyd first"<<endl;
-  for (int i = 0; i < Clusters->size(); i++) {
-    Update(Clusters->at(i).objects, &(Clusters->at(i).centroid));
-    cout<<"ekana update"<<endl;
-  }
+  do {
+    for (int i = 0; i < Clusters->size(); i++) {
+      Update(Clusters->at(i).objects, &(Clusters->at(i).centroid));
+    }
+    lloyds_assignment_point(p,Clusters,hashTable,nchanges);
+  }while (nchanges !=0);
 
-  lloyds_assignment_point(p,Clusters,hashTable,nchanges);
 }
 
 
@@ -74,7 +75,6 @@ void lloyds_assignment_point(point * p, vector<PointCluster> * Clusters, Hashtab
   previous_cluster = hashTable->displayHashCluster(*p);
   if (min_cluster != previous_cluster){
     (*nchanges) ++;
-    cout<<"kanw hashtable update"<<endl;
     hashTable->update(pn);
     // push point in new cluster list, remove from old cluster list
     Clusters->at(min_cluster).objects.push_back(p);
