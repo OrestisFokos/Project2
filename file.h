@@ -8,8 +8,7 @@
 
 typedef double new_type;
 
-//using point = std::vector<new_type>;
-typedef std::vector<new_type> point;
+using point = std::vector<new_type>;
 using curve    = std::vector <point>;
 using vec_curve = std::vector<curve>;
 

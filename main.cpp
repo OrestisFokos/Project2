@@ -140,6 +140,9 @@ int main(int argc, char *argv[]){
   cout<<"teleiwse to random_initialization"<<endl;
 
   cout<< "RANDOM K "<<random_K->at(0)->at(1)<<endl;
+  cout<< "RANDOM K "<<random_K->at(1)->at(1)<<endl;
+  cout<< "RANDOM K "<<random_K->at(3)->at(1)<<endl;
+
 
   //twra sto random_K exoume ena ptr se vector me centroids,
   //diladi ena vector <vector <new_type> * > *
@@ -172,24 +175,42 @@ int main(int argc, char *argv[]){
   cout<<"curves testing: id of first curve is = "<< AllCurves->ids.at(0) <<endl;
   cout<<"curves testing: prwto dimension tou prwtou point tou prwtou curve =  "<<AllCurves->dimensions.at(0).at(0).at(0)<<endl;  //prwto dimension tou prwtou point tou prwtou curve
 
-  PointCluster c;
-  point* new_point = new point;
-  new_point->push_back(1.0);
-  new_point->push_back(3.05);
-  new_point->push_back(1151.9);
+  /* testing lloyds */
+  PointCluster c1;
+  c1.centroid = All.at(2) ;
+  cout<<c1.centroid.at(0)<<endl;
+  cout<<c1.centroid.at(1)<<endl;
+  cout<<c1.centroid.at(2)<<endl;
 
-  c.centroid = * new_point ;
-  cout<<c.centroid.at(0)<<endl;
-  cout<<c.centroid.at(1)<<endl;
-  cout<<c.centroid.at(2)<<endl;
+  PointCluster c2;
+  c2.centroid = All.at(10) ;
+  cout<<c2.centroid.at(0)<<endl;
+  cout<<c2.centroid.at(1)<<endl;
+  cout<<c2.centroid.at(2)<<endl;
+
+  PointCluster c3;
+  c3.centroid = All.at(15) ;
+  cout<<c3.centroid.at(0)<<endl;
+  cout<<c3.centroid.at(1)<<endl;
+  cout<<c3.centroid.at(2)<<endl;
 
   vector <PointCluster> vpc;
-  vpc.push_back(c);
-  lloyds(&(All.at(0)),&vpc);
+  vpc.push_back(c1);
+  vpc.push_back(c2);
+  vpc.push_back(c3);
+  for (int i=0;i<40;i++){
+    lloyds(&(All.at(i)),&vpc);
+
+  }
+  /* end of lloyds test */
+
+
+
+
+
   //lloyds_assignment_point(&(All.at(0)),vpc);
 
 
-  delete new_point;
   delete AllCurves;
 
 
