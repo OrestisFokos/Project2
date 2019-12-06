@@ -213,8 +213,9 @@ int main(int argc, char *argv[]){
   //
   //   }
   // kanonika     for (int i=0;i<All.size();i++){
+    Hashtable_points hp(739);
     for (int i=0;i<All.size();i++){
-      lloyds(&(All.at(i)),&clusters);
+      lloyds(&(All.at(i)),&clusters,&hp);
     }
     for(int i=0;i<K;i++){
       cout<< "Cluster "<<i<<" has "<<clusters.at(i).objects.size()<<" points."<<endl;
@@ -226,12 +227,12 @@ int main(int argc, char *argv[]){
   /* random centroids assigned correctly */
 
   /* hashtable points debug */
-  Hashtable_points hp(739);
-  for (int i=0;i<All.size();i++){
-    point_node pn;
-    pn.p = All.at(i);
-    hp.insertItem(pn);
-  }
+
+  // for (int i=0;i<All.size();i++){
+  //   point_node pn;
+  //   pn.p = All.at(i);
+  //   hp.insertItem(pn);
+  // }
   for(int i=0;i<25;i++){
   cout<< hp.displayHashCluster(All.at(i))<<endl;
 

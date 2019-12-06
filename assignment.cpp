@@ -3,8 +3,8 @@
 #include "calculations.h"
 #include "assignment.h"
 
-void lloyds(point * p, vector<PointCluster>* Clusters){
-  lloyds_assignment_point(p,Clusters);
+void lloyds(point * p, vector<PointCluster>* Clusters,Hashtable_points* hashTable){
+  lloyds_assignment_point(p,Clusters,hashTable);
   for (int i = 0; i < Clusters->size(); i++) {
     Update(Clusters->at(i).objects, &(Clusters->at(i).centroid));
   }
@@ -14,7 +14,7 @@ void lloyds(point * p, vector<PointCluster>* Clusters){
 /* kanw assign to point se ena apo ta clusters, h timh int pou
 epistrefei einai o arithmos tou cluster
 */
-void lloyds_assignment_point(point * p, vector<PointCluster> * Clusters){
+void lloyds_assignment_point(point * p, vector<PointCluster> * Clusters, Hashtable_points* hashTable){
 
   if (Clusters->size() == 0){
     cout<<"Got no clusters, can't assign anything."<<endl;
@@ -29,6 +29,11 @@ void lloyds_assignment_point(point * p, vector<PointCluster> * Clusters){
       min_cluster = i;
     }
   }
+  point_node pn;
+  pn.p = *p;
+  pn.cluster = min_cluster;
+  hashTable->insertItem(pn);
+
   // if point not already in cluster then push_back, changes++, remove from previous?
   Clusters->at(min_cluster).objects.push_back(p);
   //debug print
