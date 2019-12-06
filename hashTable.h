@@ -51,4 +51,29 @@ public:
 Hash* create_hashTables(vector<vector<new_type>>* all);
 
 
+
+
+
+/* NEW ADDITIONS */
+
+class Hashtable_points
+{
+  int nbuckets;    // No. of buckets
+
+  // Pointer to an array containing buckets
+  list<point> *table;
+public:
+  Hashtable_points(int nbuckets);  // Constructor
+  ~Hashtable_points(); // destructor
+
+  // inserts a key into hash table
+  void insertItem(point x);
+
+
+  // hash function to map values to key
+  int hashFunction(point p);
+
+};
+
+
 #endif //LSH_HASHTABLh_

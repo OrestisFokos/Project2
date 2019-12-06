@@ -146,10 +146,11 @@ int main(int argc, char *argv[]){
 
   /* CURVE READ INPUT */
 
-  InputCurves* AllCurves;
-  AllCurves = read_input_curves("./curves_dataset/trajectories_dataset_small.csv");
-  cout<<"curves testing: id of first curve is = "<< AllCurves->ids.at(0) <<endl;
-  cout<<"curves testing: prwto dimension tou prwtou point tou prwtou curve =  "<<AllCurves->dimensions.at(0).at(0).at(0)<<endl;  //prwto dimension tou prwtou point tou prwtou curve
+  // InputCurves* AllCurves;
+  // AllCurves = read_input_curves("./curves_dataset/trajectories_dataset_small.csv");
+  // cout<<"curves testing: id of first curve is = "<< AllCurves->ids.at(0) <<endl;
+  // cout<<"curves testing: prwto dimension tou prwtou point tou prwtou curve =  "<<AllCurves->dimensions.at(0).at(0).at(0)<<endl;  //prwto dimension tou prwtou point tou prwtou curve
+  // delete AllCurves;
 
   /* testing lloyds */
 
@@ -203,23 +204,38 @@ int main(int argc, char *argv[]){
   }
   cout<<endl<<"We have "<<K<<" clusters. Now assigning points to clusters.."<<endl;
   /* as kanoume twra assign ola ta point se clusters*/
-  for (int i=0;i<All.size();i++){
-    lloyds(&(All.at(i)),&clusters);
 
-  }
-  for(int i=0;i<K;i++){
-    cout<< "Cluster "<<i<<" has "<<clusters.at(i).objects.size()<<" points."<<endl;
-  }
+  // int change = 1;
+  // while (change==1){
+  //   cout<<endl;
+  //   for (int i=0;i<All.size();i++){
+  //     lloyds(&(All.at(i)),&clusters);
+  //
+  //   }
+  // kanonika     for (int i=0;i<All.size();i++){
+    for (int i=0;i<All.size();i++){
+      lloyds(&(All.at(i)),&clusters);
+    }
+    for(int i=0;i<K;i++){
+      cout<< "Cluster "<<i<<" has "<<clusters.at(i).objects.size()<<" points."<<endl;
+    }
+
+
 
 
   /* random centroids assigned correctly */
 
+  /* hashtable points debug */
+  Hashtable_points hp(K);
+  for (int i=0;i<All.size();i++){
+    hp.insertItem(All.at(i));
+  }
 
 
+  //delete hp;
 
+  /* end of hashtable points debug */
 
-
-  delete AllCurves;
 
   delete random_K_centroids;
 
