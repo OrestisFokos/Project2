@@ -30,7 +30,7 @@ vector <vector<new_type> *> *  random_initialization_point (
   // construct a trivial random generator engine from a time-based seed:
   unsigned seed = chrono::system_clock::now().time_since_epoch().count();
   default_random_engine generator (seed);
-  uniform_real_distribution<double> distribution(0, K-1); //thelw na epilegw arithmous apo 0 ews K-1
+  uniform_real_distribution<double> distribution(0, Dataset->size() - 1); //thelw na epilegw arithmous apo 0 ews Dataset->size()-1
   int dimensions = Dataset->at(1).size(); // vriskw poses diastaseis exoun ta simeia
   vector <vector<new_type> *> * centroids = new vector< vector<new_type> * > ;
 
