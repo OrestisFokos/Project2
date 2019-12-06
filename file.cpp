@@ -56,10 +56,10 @@ InputPoints * read_input_points( string filename){
 		}
 			Points->dimensions.push_back(output);
 			// an theloume na stamatisoume to diavasma prin to telos tou arxeiou
-			if  (npoints == 100){
+			/*if  (npoints == 100){
 		 		file.close();
 		 		break;
-			}
+			}*/
 
 
 		}
