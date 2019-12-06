@@ -14,7 +14,7 @@ void lloyds(point * p, vector<PointCluster>* Clusters){
 /* kanw assign to point se ena apo ta clusters, h timh int pou
 epistrefei einai o arithmos tou cluster
 */
-void lloyds_assignment_point(point * p, vector<PointCluster> * Clusters ){
+void lloyds_assignment_point(point * p, vector<PointCluster> * Clusters){
 
   if (Clusters->size() == 0){
     cout<<"Got no clusters, can't assign anything."<<endl;
@@ -29,8 +29,10 @@ void lloyds_assignment_point(point * p, vector<PointCluster> * Clusters ){
       min_cluster = i;
     }
   }
+  // if point not already in cluster then push_back, changes++, remove from previous?
+  Clusters->at(min_cluster).objects.push_back(p);
   //debug print
-  cout<< "this point belongs to cluster: "<<min_cluster<<endl;
+  //cout<< "this point belongs to cluster: "<<min_cluster<<endl;
   //return min_cluster;
 
 }

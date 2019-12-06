@@ -150,3 +150,31 @@ vector<vector<new_type >*> Hash::get_bucket_contents(int index){   //returns a l
   return b->V;
 
 }
+
+/* NEW ADDITIONS */
+
+Hashtable_points::Hashtable_points(int nbuckets)
+{
+  this->nbuckets = nbuckets;
+  table = new list<point>[nbuckets];
+}
+
+void Hashtable_points::insertItem(point p)
+{
+  int index = hashFunction(p);
+  table[index].push_back(p);
+}
+
+// hash function to map values to key
+int Hashtable_points::hashFunction(point p) {
+    int sum = 0;
+    for (int i=0; i < p.size();i++){
+      sum+= p.at(i) ;
+    }
+    return sum % nbuckets;
+}
+
+Hashtable_points::~Hashtable_points() {
+  delete[] table;
+
+ }
