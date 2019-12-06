@@ -152,6 +152,8 @@ int main(int argc, char *argv[]){
   cout<<"curves testing: prwto dimension tou prwtou point tou prwtou curve =  "<<AllCurves->dimensions.at(0).at(0).at(0)<<endl;  //prwto dimension tou prwtou point tou prwtou curve
 
   /* testing lloyds */
+
+  /* this prints only 0 0 0, why?
   PointCluster c1;
   c1.centroid = All.at(2) ;
   cout<<c1.centroid.at(0)<<endl;
@@ -179,25 +181,38 @@ int main(int argc, char *argv[]){
     lloyds(&(All.at(i)),&vpc);
 
   }
+  cout<<"c1 has "<<c1.objects.size() << " objects"<<endl;
+  cout<<"c2 has "<<c2.objects.size() << " objects"<<endl;
+  cout<<"c3 has "<<c3.objects.size() << " objects"<<endl;
   cout<<"end of lloyds debug print" <<endl;
+  */
   /* end of lloyds test */
 
-/* creating K empty clusters and using random initialize to assing their centroids */
+  /* creating K empty clusters and using random initialize to assing their centroids */
 
-int K = 4;
-// to random K prepei na einai pointers se NEA simeia
-vector <vector<new_type> *> * random_K_centroids;
-random_K = random_initialization_point(&All, K);
-//twra sto random_K exoume ena ptr se vector me centroids,
-//diladi ena vector <vector <new_type> * > *
-cout<< "RANDOM K "<<random_K_centroids->at(0)->at(1)<<endl;
-cout<< "RANDOM K "<<random_K_centroids->at(1)->at(1)<<endl;
-cout<< "RANDOM K "<<random_K_centroids->at(3)->at(1)<<endl;
-    vector<PointCluster> clusters =  create_clusters_point(K);
-    for (int i=0;i<K;i++){
-      clusters.at(i).centroid = *( random_K_centroids->at(i) );
-    }
-/* random centroids assigned correctly */
+  int K = 4;
+  vector <vector<new_type> *> * random_K_centroids;
+  // na dw an to random_init tha prepei na einai gia uparxonta h nea simeia
+  random_K_centroids = random_initialization_point(&All, K);
+  //twra sto random_K exoume ena ptr se vector me centroids,
+  //diladi ena vector <vector <new_type> * > *
+
+  vector<PointCluster> clusters =  create_clusters_point(K);
+  for (int i=0;i<K;i++){
+    clusters.at(i).centroid = *( random_K_centroids->at(i) );
+  }
+  cout<<endl<<"We have "<<K<<" clusters. Now assigning points to clusters.."<<endl;
+  /* as kanoume twra assign ola ta point se clusters*/
+  for (int i=0;i<All.size();i++){
+    lloyds(&(All.at(i)),&clusters);
+
+  }
+  for(int i=0;i<K;i++){
+    cout<< "Cluster "<<i<<" has "<<clusters.at(i).objects.size()<<" points."<<endl;
+  }
+
+
+  /* random centroids assigned correctly */
 
 
 
