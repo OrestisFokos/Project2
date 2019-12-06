@@ -64,7 +64,7 @@ class Hashtable_points
   int nbuckets;    // No. of buckets
 
   // Pointer to an array containing buckets
-  list<point_node> *table;
+  vector<point_node> *table;
 public:
   Hashtable_points(int nbuckets);  // Constructor
   ~Hashtable_points(); // destructor
@@ -76,7 +76,7 @@ public:
   // hash function to map values to key
   int hashFunction(point p);
 
-  int displayHash(point p);
+  int displayHashCluster(point p);
 
 
 };

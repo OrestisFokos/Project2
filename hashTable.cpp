@@ -157,7 +157,7 @@ vector<vector<new_type >*> Hash::get_bucket_contents(int index){   //returns a l
 Hashtable_points::Hashtable_points(int nbuckets)
 {
   this->nbuckets = nbuckets;
-  table = new list<point_node>[nbuckets];
+  table = new vector<point_node>[nbuckets];
 }
 
 void Hashtable_points::insertItem(point_node pn)
@@ -175,12 +175,14 @@ int Hashtable_points::hashFunction(point p) {
     return sum % nbuckets;
 }
 
-int Hashtable_points::displayHash(point p){
+int Hashtable_points::displayHashCluster(point p){
   int index = hashFunction(p);
   for (int i=0;i<table[index].size();i++){
-    if (table[index].p == p) return table[index].cluster;
+    if (table[index].at(i).p == p) return table[index].at(i).cluster;
   }
 }
+
+
 
 Hashtable_points::~Hashtable_points() {
   delete[] table;

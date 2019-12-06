@@ -226,10 +226,20 @@ int main(int argc, char *argv[]){
   /* random centroids assigned correctly */
 
   /* hashtable points debug */
-  Hashtable_points hp(K);
+  Hashtable_points hp(739);
   for (int i=0;i<All.size();i++){
-    hp.insertItem(All.at(i));
+    point_node pn;
+    pn.p = All.at(i);
+    hp.insertItem(pn);
   }
+  for(int i=0;i<25;i++){
+  cout<< hp.displayHashCluster(All.at(i))<<endl;
+
+}
+
+
+
+
 
 
   //delete hp;
