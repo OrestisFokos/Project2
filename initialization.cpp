@@ -34,19 +34,12 @@ vector <vector<new_type> *> *  random_initialization_point (
   int dimensions = Dataset->at(1).size(); // vriskw poses diastaseis exoun ta simeia
   vector <vector<new_type> *> * centroids = new vector< vector<new_type> * > ;
 
-  cout<<"mesa sto function, prin to for"<<endl;
-
   for(int i=0;i<K;i++){
     int random_index = distribution(generator);
     (*centroids).push_back( & ( Dataset->at(random_index) ) );
-    cout<<"mesa sto function, mesa sto for"<<endl;
 
   }
-  cout<<"telos to for"<<endl;
   cout<<centroids->at(0)->at(0)<<endl;
-  cout<<"vgainw apto func"<<endl;
-
-
 
   return centroids;
 }
