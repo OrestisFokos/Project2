@@ -55,23 +55,29 @@ Hash* create_hashTables(vector<vector<new_type>>* all);
 
 
 /* NEW ADDITIONS */
-
+typedef struct point_node{
+  point p;
+  int cluster;
+}point_node;
 class Hashtable_points
 {
   int nbuckets;    // No. of buckets
 
   // Pointer to an array containing buckets
-  list<point> *table;
+  list<point_node> *table;
 public:
   Hashtable_points(int nbuckets);  // Constructor
   ~Hashtable_points(); // destructor
 
   // inserts a key into hash table
-  void insertItem(point x);
+  void insertItem(point_node pn);
 
 
   // hash function to map values to key
   int hashFunction(point p);
+
+  int displayHash(point p);
+
 
 };
 
