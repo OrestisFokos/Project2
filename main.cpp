@@ -185,7 +185,7 @@ int main(int argc, char *argv[]){
 
   vector <PointCluster> vpc;
   vpc.push_back(c);
-  lloyds(&(All.at(0)),&vpc);
+  for (int i = 0; i < All.size(); i++) lloyds(&(All.at(i)),&vpc);
   //lloyds_assignment_point(&(All.at(0)),vpc);
 
 
