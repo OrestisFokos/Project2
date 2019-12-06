@@ -14,7 +14,7 @@
 
 */
 
-vector <vector<new_type> *> *  random_initialization (
+vector <vector<new_type> *> *  random_initialization_point (
   vector<vector<new_type>> * Dataset,
   int K)
 {
@@ -49,4 +49,10 @@ vector <vector<new_type> *> *  random_initialization (
 
 
   return centroids;
+}
+
+
+vector<PointCluster> create_clusters_point(int K){
+  vector<PointCluster> Clusters(K);
+  return Clusters;
 }
